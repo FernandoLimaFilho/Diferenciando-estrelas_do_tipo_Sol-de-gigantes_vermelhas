@@ -40,6 +40,18 @@ print("Objetivos")
 * Esse é um projeto inicial que pretende destinguir estrelas frias do tipo solar de gigantes vermelhas usando Machine Learning.
 
 
+##
 
+<h1>
+
+```python
+print("Procedimentos")
+```
+ 
+## Conjunto de dados original
+ 
+ 
+ 
+ 
 
 
