@@ -1,0 +1,64 @@
+
+....Edit 10 rows of file 'table2.dat.gz' with form=a
+#!form=a
+${KIC} ${Teff} ${e_Teff} ${log(g)} ${e_log(g)} ${[Fe/H]} ${e_[Fe/H]} ${NoCorM} ${e_NoCorM} ${NoCorR} ${e_NoCorR} ${RGBcorM} ${e_RGBcorM} ${RGBcorR} ${e_RGBcorR} ${ClcorM} ${e_ClcorM} ${ClcorR} ${e_ClcorR} ${Phase}
+ (hit Return)
+## (from tabmap V6.0 (2016-08-18)) 2022-04-22T17:23:19
+#---------------------------------------------------------------------------
+#-- J/ApJS/236/42 Asteroseismology of ~16000 Kepler red giants (Yu+, 2018)
+#--------------------------------------------------------------------------
+#---Table: J/ApJS/236/42/table2.dat.gz Stellar fundamental properties  (16094 records)
+#-------------------------------------------------------------------------------
+#     Label Format Unit    Explanations
+#-------------------------------------------------------------------------------
+#       KIC I8     ---     [757137/12934574] Kepler Input Catalog ID
+#      Teff I4     K       [3225/6356] Effective temperature (2)
+#    e_Teff I3     K       [50/682] Uncertainty in Teff
+#    log(g) F5.3   [cm/s2] [1.4/3.4] Log surface gravity from this work
+#  e_log(g) F5.3   [cm/s2] [0.006/0.2] Uncertainty in log(g)
+#    [Fe/H] F5.2   [Sun]   [-2.5/1] Metallicity (2)
+#  e_[Fe/H] F4.2   [Sun]   [0.1/1.6] Uncertainty in [Fe/H]
+#    NoCorM F4.2   Msun    [0.4/4.6] No {Delta}{nu} correction
+#                           mass solution
+#  e_NoCorM F4.2   Msun    [0.04/3] Uncertainty in NoCorM
+#    NoCorR F5.2   Rsun    [3.5/48.4] No {Delta}{nu} correction
+#                           radius solution
+#  e_NoCorR F4.2   Rsun    [0.06/10] Uncertainty in NoCorR
+#   RGBcorM F4.2   Msun    [0.3/5.2] RGB {Delta}{nu} corrected
+#                           mass solution
+# e_RGBcorM F4.2   Msun    [0.03/3] Uncertainty in RGBcorM
+#   RGBcorR F5.2   Rsun    [3.2/48.7] RGB {Delta}{nu} corrected
+#                           radius solution
+# e_RGBcorR F4.2   Rsun    [0.06/10] Uncertainty in RGBcorR
+#    ClcorM F4.2   Msun    [0.4/5.3] Clump {Delta}{nu} corrected
+#                           mass solution
+#  e_ClcorM F4.2   Msun    [0.04/3] Uncertainty in ClcorM
+#    ClcorR F5.2   Rsun    [3.4/51.2] Clump {Delta}{nu} corrected
+#                           radius solution
+#  e_ClcorR F5.2   Rsun    [0.06/10.2] Uncertainty in ClcorR
+#     Phase I1     ---     [0/2]? Evolutionary phase (3)
+#-------------------------------------------------------------------------------
+#Note (2): Collected from Mathur+ (2017, J/ApJS/229/30).
+#Note (3): Phase as follows:
+#     2 = HeB phase;
+#     1 = RGB phase;
+#     0 = unclassified phase
+#-------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+                                                                                                         P
+                                                                                                         h
+                                                                                                         a
+                      l           [        No          N       RGB         RG        Cl          C       s
+     KIC Teff  e_ og(g)    e_ Fe/H]   e_ CorM   e_ oCorR   e_ corM   e_ BcorR   e_ corM   e_ lcorR    e_ e
+----------------------------------------------------------------------------------------------------------
+  757137 4751 139 2.383 0.012 -0.08 0.30 1.70 0.14 13.91 0.41 1.55 0.13 13.26 0.39 1.72 0.14 13.97  0.41 1
+  892010 4834 151 2.161 0.023  0.21 0.30 1.42 0.29 16.37 1.38 1.36 0.28 16.02 1.34 1.43 0.30 16.47  1.39 0
+  892738 4534 135 1.769 0.022 -0.25 0.30 1.15 0.21 23.15 1.62 0.99 0.18 21.49 1.48 1.12 0.20 22.86  1.60 0
+  892760 5188 183 2.394 0.011 -0.21 0.30 1.00 0.14 10.51 0.68 1.04 0.15 10.74 0.70 1.00 0.14 10.52  0.68 2
+  893214 4728  80 2.522 0.008 -0.15 0.15 1.72 0.10 11.90 0.26 1.54 0.09 11.29 0.24 1.72 0.10 11.92  0.26 1
+  893233 4207 147 1.668 0.012  0.22 0.30 0.86 0.09 22.43 0.95 0.71 0.07 20.46 0.84 0.84 0.09 22.28  0.94 0
+ 1026084 5072 166 2.534 0.013 -0.12 0.30 1.71 0.18 11.69 0.48 1.67 0.17 11.55 0.48 1.75 0.18 11.83  0.49 2
+ 1026180 4718 148 2.471 0.012 -0.02 0.30 1.65 0.17 12.37 0.53 1.50 0.16 11.80 0.50 1.67 0.17 12.43  0.53 2
+ 1026309 4514  80 2.121 0.020  0.25 0.15 2.71 0.42 23.71 1.35 2.60 0.40 23.22 1.32 2.73 0.42 23.78  1.35 0
+ 1026326 5123 162 2.899 0.009 -0.41 0.30 1.32 0.08  6.77 0.15 1.30 0.08  6.70 0.15 1.36 0.09  6.85  0.16 1
+----------------------------------------------------------------------------------------------------------
