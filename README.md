@@ -56,6 +56,12 @@ Para as gigantes vermelhas, no VizieR, nós temos a 2º tabela desse repositóri
  
 Para as estrelas do tipo Sol, nós temos a 3º tabela desse repositório: <a href="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/A+A/555/A150#/browse">Physical parameters of cool solar-type stars : J/A+A/555/A150</a>
  
+As colunas aproveitadas são descritas abaixo:
+ 
+* `[Fe/H]`: Metalicidade 
+* `logg`: Log da gravidade da superfície 
+* `Teff`: Temperatura efetiva 
+ 
 ## Importação das bibliotecas
  
 ```bash
@@ -128,7 +134,101 @@ from keras.utils.np_utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense, Dropout 
 ```
+
+## Chamando os dados
  
+```bash
+"""
+Chamando o dataset só com gigantes vermelhas
+"""
+Gigantes_vermelhas = pd.read_csv("2_parte_RGB_HeB.txt", sep = "|", header = None)
+Gigantes_vermelhas.columns = ["KIC", "Teff", "e_Teff", "logg", "e_logg", "[Fe/H]", 
+                  "e_[Fe/H]", "NoCorM", "e_NoCorM", "NoCorR", "e_NoCorR",
+                  "RGBcorM", "e_RGBcorM", "RGBcorR", "e_RGBcorR", "ClcorM", 
+                  "e_ClcorM", "ClcorR", "e_ClcorR", "Phase"]
+"""
+Chamando o dataset só com estrelas frias do tipo Sol
+"""
+Estrelas_do_tipo_Sol = pd.read_csv("age_prediction.txt", sep = "|", header = None)
+Estrelas_do_tipo_Sol.columns = ["Star", "Teff", "e_Teff", "logg",
+               "e_logg", "Vt", "e_Vt", "[Fe/H]", "e_[Fe/H]",
+               "Mass", "e_Mass", "Age", "e_Age"]
+``` 
+ 
+## Pré-processamento de dados
+ 
+```bash
+"""
+A nossa classificação vai ser com base em três variáveis preditoras principais: Teff / log(g) / [Fe/H] 
+""" 
+Gigantes_vermelhas.drop(["KIC", "NoCorM", "e_NoCorM", "NoCorR", "e_NoCorR",
+                  "RGBcorM", "e_RGBcorM", "RGBcorR", "e_RGBcorR", "ClcorM", 
+                  "e_ClcorM", "ClcorR", "e_ClcorR", "Phase", "e_Teff", "e_logg", "e_[Fe/H]"], axis = 1, inplace = True)
+Estrelas_do_tipo_Sol.drop(["Star", "Vt", "e_Vt",
+                          "Mass", "e_Mass", "Age", "e_Age", "e_Teff", "e_logg", "e_[Fe/H]"], axis = 1, inplace = True)
+"""
+Agora, vamos embaralhar as linhas dos dois Dataframes... 
+""" 
+Gigantes_vermelhas_ = Gigantes_vermelhas.sample(frac=1).reset_index(drop = True)
+Estrelas_do_tipo_Sol_ = Estrelas_do_tipo_Sol.sample(frac=1).reset_index(drop = True)
+Gigantes_vermelhas = pd.DataFrame(Gigantes_vermelhas_, columns = Gigantes_vermelhas.columns)
+Estrelas_do_tipo_Sol = pd.DataFrame(Estrelas_do_tipo_Sol_, columns = Estrelas_do_tipo_Sol.columns)
+"""
+Note que há uma disparidade muito grande entre o número de linhas dos dois Dataframes; 
+""" 
+print(f"Shape_Gigantes_vermelhas = {Gigantes_vermelhas.shape}")
+print(f"Shape_Estrelas_do_tipo_Sol = {Estrelas_do_tipo_Sol.shape}")
+"""
+Shape_Gigantes_vermelhas = (16094, 3)
+Shape_Estrelas_do_tipo_Sol = (451, 3) 
+Vamos pegar apenas 451 linhas do Dataframe das gigantes vermelhas 
+""" 
+Gigantes_vermelhas = Gigantes_vermelhas.loc[0:450]
+print(f"Shape_Gigantes_vermelhas = {Gigantes_vermelhas.shape}")
+print(f"Shape_Estrelas_do_tipo_Sol = {Estrelas_do_tipo_Sol.shape}") 
+"""
+Shape_Gigantes_vermelhas = (451, 3)
+Shape_Estrelas_do_tipo_Sol = (451, 3) 
+""" 
+``` 
+ 
+Pronto, agora vamos adicionar a variável target aos Dataframes.
+ 
+Gigante vermelha = 0
+ 
+Estrela do tipo Sol = 1
+
+```bash
+target = []
+for i in range(0, 451):
+    target.append(0)
+target = pd.DataFrame(target, columns = ["target"])
+Gigantes_vermelhas = pd.concat([Gigantes_vermelhas, target], axis = 1)
+target = []
+for i in range(0, 451):
+    target.append(1)
+target = pd.DataFrame(target, columns = ["target"])
+Estrelas_do_tipo_Sol = pd.concat([Estrelas_do_tipo_Sol, target], axis = 1)
+"""
+Hora de concatenar os dois Dataframes... 
+""" 
+Concatenado_GV_SSOL = pd.concat([Gigantes_vermelhas, Estrelas_do_tipo_Sol], axis = 0)
+Concatenado_GV_SSOL = Concatenado_GV_SSOL.sample(frac = 1).reset_index(drop = True)
+Concatenado_GV_SSOL = pd.DataFrame(Concatenado_GV_SSOL, columns = Estrelas_do_tipo_Sol.columns)  
+``` 
+
+## Análise dos dados
+ 
+Usando três variáveis preditoras para fazer a classificação: Teff / Log(g) / [Fe/H] formaram-se dois clusters de dados visivelmente separáveis. Isso já é um indício que os algoritmos de ML irão se dar muito bem nessa classificação. 
+ 
+<p align="center"> 
+
+<img src = "https://user-images.githubusercontent.com/93550626/164868931-e76ce1b6-6fbb-46e8-87f4-9ab65e7e6807.jpg" width = 400 height = 400> 
+<img src = "https://user-images.githubusercontent.com/93550626/164868937-a77473f5-d117-4620-bc1d-0d552111a1d6.jpg" width = 400 height = 400>
+
+<img src = "https://user-images.githubusercontent.com/93550626/164873300-df5c8aa9-fdb0-4b1a-ae5f-bc48c311ab3b.jpg" width = 900 height = 400> 
+
+<p> 
  
  
  
