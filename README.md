@@ -230,7 +230,35 @@ Usando três variáveis preditoras para fazer a classificação: Teff / Log(g) /
 
 <p> 
  
+ ## Split dos dados
  
+ ```bash
+ """
+x: DF com apenas variáveis preditoras
+"""
+x = Concatenado_GV_SSOL.drop(["target"], axis = 1)
+Norm = MinMaxScaler(feature_range = (0, 1))
+"""
+Normalizar x
+"""
+x_norm = Norm.fit_transform(x)
+x_norm = pd.DataFrame(x_norm, columns = x.columns)
+"""
+y: Série com a variável target 
+"""
+y = Concatenado_GV_SSOL["target"]
+"""
+y_neural_network: y para a rede neural
+"""
+y_neural_network = to_categorical(y)
+"""
+Splits dos dados
+"""
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state = 101)
+x_train_norm, x_test_norm, y_train_norm, y_test_norm = train_test_split(x_norm, y, test_size = 0.3, random_state = 101)
+x_train_norm_neural_network, x_test_norm_neural_network, y_train_norm_neural_network, y_test_norm_neural_network = train_test_split(x_norm, y_neural_network, test_size = 0.3, random_state = 101)
+x_train_neural_network, x_test_neural_network, y_train_neural_network, y_test_neural_network = train_test_split(x, y_neural_network, test_size = 0.3, random_state = 101)
+ ```
  
  
  
