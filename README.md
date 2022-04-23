@@ -268,6 +268,8 @@ x_train_neural_network, x_test_neural_network, y_train_neural_network, y_test_ne
 print("Modelos de Machine Learning") 
 ``` 
 
+</h1> 
+
 Para a classificação binária entre gigante vermelha e estrela do tipo Sol, foram usados os seguintes modelos; 
  
 <p align="center">
@@ -286,13 +288,13 @@ Os códigos referentes a cada modelo já estão disponíveis.
 print("Resultados") 
 ```
  
-##
+</h1>
 
 A performance dos algoritmos são mostradas a seguir; 
  
 <p align="center">
  
-<img src = "https://user-images.githubusercontent.com/93550626/164895512-5112d734-391d-4033-99ac-cfb03c89f63a.png" width = 500 height = 400> 
+<img src = "https://user-images.githubusercontent.com/93550626/164895512-5112d734-391d-4033-99ac-cfb03c89f63a.png" width = 500 height = 360> 
 
 <p> 
  
