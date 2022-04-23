@@ -260,7 +260,48 @@ x_train_norm_neural_network, x_test_norm_neural_network, y_train_norm_neural_net
 x_train_neural_network, x_test_neural_network, y_train_neural_network, y_test_neural_network = train_test_split(x, y_neural_network, test_size = 0.3, random_state = 101)
  ```
  
+## 
  
- 
+<h1>
 
+```python
+print("Modelos de Machine Learning") 
+``` 
+
+Para a classificação binária entre gigante vermelha e estrela do tipo Sol, foram usados os seguintes modelos; 
+ 
+<p align="center">
+
+<img src = "https://user-images.githubusercontent.com/93550626/164894605-45dff9df-3912-4150-8520-be97f98a533a.jpg" width = 700 height = 230> 
+
+<p> 
+ 
+Os códigos referentes a cada modelo já estão disponíveis.
+ 
+##
+ 
+<h1>
+ 
+```python
+print("Resultados") 
+```
+ 
+##
+
+A performance dos algoritmos são mostradas a seguir; 
+ 
+<p align="center">
+ 
+<img src = "https://user-images.githubusercontent.com/93550626/164895512-5112d734-391d-4033-99ac-cfb03c89f63a.png" width = 500 height = 400> 
+
+<p> 
+ 
+E, agora, a da rede neural,
+ 
+<p align="center">
+ 
+<img src = "https://user-images.githubusercontent.com/93550626/164895771-297380d8-225a-457c-8d67-0b3c965bf4ee.jpg" width = 400 height = 300>
+<img src = "https://user-images.githubusercontent.com/93550626/164895789-30b9dd46-ca2c-4103-bc4f-a6c896ba9ba5.png" width = 400 height = 300> 
+
+<p> 
 
